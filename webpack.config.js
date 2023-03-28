@@ -1,40 +1,50 @@
 const { plugins } = require('@babel/preset-env/lib/plugins-compat-data')
-const path= require ('path') //hace referencia a donde se ejecuta la app, en este caso esta pc
-const HtmlWebpackplugin=require('html-webpack-plugin') //llamamos a el plugin que ya habiamos instalado
+const path = require('path') //hace referencia a donde se ejecuta la app, en este caso esta pc
+const HtmlWebpackplugin = require('html-webpack-plugin') //llamamos a el plugin que ya habiamos instalado
 
-module.exports={
+
+
+module.exports = {
     entry: './src/index.js',
-    output:{
-        path: path.resolve(__dirname,'dist'),
-        filename:'bundle.js',
-
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'bundle.js',
     },
-    resolve:{
-        extencions:['js','.jsx'],//
+    mode: 'development',
 
+    /*     stats: {
+            errorDetails: true,
+          }, */
+    resolve: {//extenciones que tiene el proyecto de entrada
+        extensions: ['.js', '.jsx'],//extenciones que intentara resolver primero
+        alias: {//sirven para cuadno quieramos llamar a un directorio, con el alias es mas rapido
+            '@components': path.resolve(__dirname, 'src/components/'),
+            '@styles': path.resolve(__dirname, 'src/styles/')
+        }
     },
-    module:{
-        rules:[
+    module: {
+        rules: [
             {
-                test:/\.(js|jsx)$/,
-                exclude:/node_modules/,
-                use:{
-                    loader:'babel-loader'
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader'
                 }
             },
             {
-                test:/\.html$/,
-                use:[
+                test: /\.html$/,
+                exclude: /node_modules/,
+                use: [
                     {
-                        loader:'html-loader'
+                        loader: 'html-loader'
                     }
                 ]
             }
         ]
     },
-    plugins:[
+    plugins: [
         new HtmlWebpackplugin({
-            template:'./public/index.html'
+            template: './public/index.html'
         })
     ]
 }
