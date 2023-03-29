@@ -1,6 +1,7 @@
 const { plugins } = require('@babel/preset-env/lib/plugins-compat-data')
 const path = require('path') //hace referencia a donde se ejecuta la app, en este caso esta pc
 const HtmlWebpackplugin = require('html-webpack-plugin') //llamamos a el plugin que ya habiamos instalado
+const MiniCssExtractPlugin= require('mini-css-extract-plugin')
 
 
 
@@ -39,14 +40,30 @@ module.exports = {
                         loader: 'html-loader'
                     }
                 ]
+            },
+            {
+                test:/\.s[ac]ss$/i,
+                use:[
+                    "style-loader",
+                    "css-loader",
+                    "sass-loader"
+                ]
             }
         ]
     },
     plugins: [
         new HtmlWebpackplugin({
             template: './public/index.html'
-        })
-    ]
+        }),
+        new MiniCssExtractPlugin({
+            filename:'[name].css'
+        }),
+    ],
+/*     devServer:{
+        contentBase: path.join(__dirname,'dist'),
+        compress:true,
+        port:3005
+    } */
 }
 
 
