@@ -10,6 +10,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
+        publicPath:'/' /* para evitar problemas con las rutas? */
     },
     mode: 'development',
 
@@ -59,11 +60,9 @@ module.exports = {
             filename:'[name].css'
         }),
     ],
-/*     devServer:{
-        contentBase: path.join(__dirname,'dist'),
-        compress:true,
-        port:3005
-    } */
+    devServer:{
+       historyApiFallback:true,
+    }
 }
 
 
