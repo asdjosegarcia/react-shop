@@ -20,8 +20,12 @@ module.exports = {
     resolve: {//extenciones que tiene el proyecto de entrada
         extensions: ['.js', '.jsx'],//extenciones que intentara resolver primero
         alias: {//sirven para cuadno quieramos llamar a un directorio, con el alias es mas rapido
-            '@components': path.resolve(__dirname, 'src/components/'),
-            '@styles': path.resolve(__dirname, 'src/styles/')
+            //aqui vana quedando los directorios que necesitamos para el proyecto
+            '@components': path.resolve(__dirname, 'src/components/'),//path.resolve va a ir a __dirname(esta carpeta) y va a buscar a src/components
+            '@containers': path.resolve(__dirname, 'src/containers/'),
+            '@styles': path.resolve(__dirname, 'src/styles/'),
+            '@icons': path.resolve(__dirname,'src/assets/icons/'), //cuando escribamos @icons en un jsx hacemos referencia a esta ruta
+            '@logos':path.resolve(__dirname,'src/assets/logos/')
         }
     },
     module: {
@@ -49,6 +53,10 @@ module.exports = {
                     "css-loader",
                     "sass-loader"
                 ]
+            },
+            {
+                test:/\.(png|svg|jp(e*)g|gif)$/,
+                type:'asset'
             }
         ]
     },
