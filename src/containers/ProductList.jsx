@@ -1,27 +1,35 @@
-import React,{useEffect,useState} from 'react';//useEffect nos permite hacer llamados a nuestra API y transmitirlo a nuestro componente
+import React from 'react';
 import ProductItem from '../components/ProductItem';
+import useGetProducts from '../hooks/useGetProducts'; //tramos nuestro customhook 
 import '../styles/ProductList.scss';
-import axios from 'axios'; //importamos a axios
+
 
 
 const API= 'https://api.escuelajs.co/api/v1/products'
 
 const ProductList = () => {
-	const [products,setProducts]=useState([])
-	useEffect(async()=>{
-		const response=await axios(API)//pedimos los datos a la api
-		setProducts(response.data)
-	},[])
+	const products =useGetProducts(API);//products va a almacenar lo que netrega el customhook useGetProducts
+
 
 	return (
 		<section className="main-container">
 			<div className="ProductList">
-				{products.map(product=>(
-					<ProductItem />
-				))}
+				{products.map(product=>( //por cada producto que recivimos de la api se renderiza un <product Item>
+					<ProductItem product={product} key={product.id} /> //key para que react identifique cada producto, product.id por que la API nos da una id para cada producto
+					))}
 			</div>
 		</section>
 	);
 }
 
 export default ProductList;
+
+/* 	useEffect(() => {
+		getData();
+		}, []);
+		
+		const getData = async () => {
+		const response = await axios.get(API);
+		setProducts(response.data);
+		console.log(response);
+		}; */

@@ -1,30 +1,33 @@
-import React, { useState } from "react"; //importamos el hook use state
-/* import React from "react"; */
+import React, { useContext } from "react"; //importamos el hook useContext
+import AppContext from "../context/AppContext"; //importamos el contexto para poder usar el customHook
 import "../styles/ProductItem.scss";
-import addToCard from "@icons/bt_add_to_cart.svg";
+import addToCartImage from "@icons/bt_add_to_cart.svg";
 
-const ProductItem = () => {
-  const [cart, setCart] = useState("");
+const ProductItem = ({product}) => {//funcion del componente
+  const  {addToCart}=useContext(AppContext);
+  //addToCart funcion a la que llamamos 
+  //useContext nos permite usar el contexto de AppContext.js
+  //con el contexto que creamos mediante "createContex" en AppContext.js
 
-  const handleClick = () => {
+  const handleClick = item => {//andleClick envia la variable item 
     //funcion que cambia el estado cart
-    setCart([]);
+    addToCart(item);//item se almacena gracias a la funcion addTocart
   };
 
   return (
     <div className="ProductItem">
       <img
-        src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-        alt=""
+        src={product.images[0]} //imagen 0 que nos da la api
+        alt={product.title}//titulo de la imagen de la api
       />
       <div className="product-info">
         <div>
-          <p>$120,00</p>
-          <p>Bike</p>
+          <p>${product.price}</p>
+          <p>{product.title}</p>
         </div>
-        <figure onClick={handleClick}>
+        <figure onClick={()=>handleClick(product)}>
           {/* llamamos a la funcion que cambia el estado  cart */}
-          <img src={addToCard} alt="" />
+          <img src={addToCartImage} alt="" />
         </figure>
         
       </div>
