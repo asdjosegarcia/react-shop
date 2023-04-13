@@ -10,7 +10,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: 'bundle.js',
-        publicPath:'./' /* para evitar problemas con las rutas? */
+        publicPath:'/' /* para evitar problemas con las rutas? */
     },
     mode: 'development',
 
@@ -69,6 +69,9 @@ module.exports = {
         }),
     ],
     devServer:{
+/*         static: {
+            directory: path.join(__dirname, './build'),
+          }, */
        historyApiFallback:true,
     }
 }
