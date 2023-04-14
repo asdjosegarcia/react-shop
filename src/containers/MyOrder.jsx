@@ -1,11 +1,13 @@
-import React, { useContext } from "react"; //llamamos a rect context
+import React, { useContext,useState } from "react"; //llamamos a rect context
 import OrderItem from "../components/OrderItem";
 import AppContext from "../context/AppContext"; //llamamos a nuestro context
 import "../styles/MyOrder.scss";
 import arrow from "@icons/flechita.svg";
 
-const MyOrder = () => {
-  const { state } = useContext(AppContext); //traemos el estado de nuestro contexto
+const MyOrder = (props) => {
+  const { state, } = useContext(AppContext); //traemos el estado de nuestro contexto
+  /* const [myOrderToggle, setMyOrderToggle]=useState(false); */
+
   const sumTotal = () => {
     const reducer = (accumulator, currentValue) =>
       accumulator + currentValue.price; //acumulator suma total, current value valor actual
@@ -20,7 +22,9 @@ const MyOrder = () => {
     <aside className="MyOrder">
       <div className="relative-container">
         <div className="title-container">
-          <img src={arrow} alt="arrow" />
+          <img src={arrow} alt="arrow" 
+          onClick={()=>{props.setToggleOrders((!props.toggleOrders))}}
+          />
           <p className="title">My order</p>
         </div>
         <div className="my-order-content">

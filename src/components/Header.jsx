@@ -14,7 +14,6 @@ const Header = () => {
   const handleToggle = () => {
     setToggleOrders(false);
     setToggle(!toggle); //si es true pasa a false
-    console.log({toggle,toggleOrders});
   };
   return (
     <nav>
@@ -59,7 +58,10 @@ const Header = () => {
       </div>
       {toggle && <Menu />}
       {/* si toglle es true muestra la linea de codigo(el componente) */}
-      {toggleOrders && <MyOrder />}
+      {toggleOrders && <MyOrder 
+      toggleOrders={toggleOrders}
+      setToggleOrders={setToggleOrders}
+      />}
     </nav>
   );
 };
