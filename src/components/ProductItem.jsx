@@ -11,7 +11,7 @@ const ProductItem = ({product}) => {//funcion del componente
 
   const handleClick = item => {//andleClick envia la variable item 
     //funcion que cambia el estado cart
-    addToCart(item);//item se almacena gracias a la funcion addTocart
+    addToCart(item);//item se almacena gracias a la funcion addTocart 
   };
 
   return (

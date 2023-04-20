@@ -6,15 +6,21 @@
 	gap: 16px;
 	margin-bottom: 24px;
 	align-items: center;
+	height: 90px;
 }
 .OrderItem figure {
 	margin: 0;
+	grid-row: 1/3;
 }
 .OrderItem figure img {
 	width: 70px;
 	height: 70px;
 	border-radius: 20px;
 	object-fit: cover;
+}
+.OrderItem .close-img{
+	grid-row: 1/1;
+	grid-column: 4/4;
 }
 .OrderItem p:nth-child(2) {
 	color: var(--very-light-pink);
@@ -23,3 +29,18 @@
 	font-size: var(--md);
 	font-weight: bold;
 }
+.product-title{
+	grid-column: 2/4;
+	margin: 0;
+}
+.product-price{
+	grid-column: 3/4;
+	grid-row: 2/2;
+	margin:0 0 20px 0;
+}
+.product-input{
+	grid-column: 2/3;
+	width: 50px;
+	margin-bottom: 20px;
+}
+

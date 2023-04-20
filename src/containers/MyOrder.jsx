@@ -28,13 +28,16 @@ const MyOrder = (props) => {
           <p className="title">My order</p>
         </div>
         <div className="my-order-content">
-          {state.cart.map(
-            (
+          {state.cart.map((product)=> (product.repeatedTimes>0)?null: <OrderItem product={product} key={`orderItem-${product.id}-${product.repeatedTimes}`} />)}
+          {/* solo va a renderizar los items que no esten repetidos */}
+          {/*  ( arrow function anterior para renderizado
               product //va a crear un <OrderItem> por cada producto que tenga state.cart
             ) => (
-              <OrderItem product={product} key={`orderItem-${product.id}`} /> //se le asigna un valor distinto a product id para que no se mezcle
-            )
-          )}
+              <OrderItem product={product} key={`orderItem-${product.id}-${product.repeatedTimes}`} /> 
+              // product es lo que enviamos como parametro a el elemento oredeItem para luego usar sus propiedades
+              // key, es usado por react para identificar lo que renderiza. evita errores y renderizados inecesarios
+            )  */}
+          
         </div>
         <div className="order-trasparent">
           <p>
