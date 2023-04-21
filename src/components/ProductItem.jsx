@@ -2,16 +2,21 @@ import React, { useContext } from "react"; //importamos el hook useContext
 import AppContext from "../context/AppContext"; //importamos el contexto para poder usar el customHook
 import "../styles/ProductItem.scss";
 import addToCartImage from "@icons/bt_add_to_cart.svg";
+import addedToCartImage from "@icons/bt_added_to_cart.svg"
 
 const ProductItem = ({product}) => {//funcion del componente
-  const  {addToCart}=useContext(AppContext);
+  const  {addToCart,removeFromCart,sameProductsCalc,state,removeGroupCart}=useContext(AppContext);
   //addToCart funcion a la que llamamos 
   //useContext nos permite usar el contexto de AppContext.js
   //con el contexto que creamos mediante "createContex" en AppContext.js
 
-  const handleClick = item => {//andleClick envia la variable item 
+  const handleClick = (item) => {//andleClick funcion que recive item al hacer click
     //funcion que cambia el estado cart
-    addToCart(item);//item se almacena gracias a la funcion addTocart 
+    if(sameProductsCalc(item,state).length==0){ //si la cantidad de ese producto es igual a 0 agrega uno
+			addToCart(item)//agrega el producto
+		}else{
+      removeGroupCart(item) //remueve todos los productos del mismo tipo que item
+		}
   };
 
   return (
@@ -27,7 +32,8 @@ const ProductItem = ({product}) => {//funcion del componente
         </div>
         <figure onClick={()=>handleClick(product)}>
           {/* llamamos a la funcion que cambia el estado  cart */}
-          <img src={addToCartImage} alt="" />
+          {(sameProductsCalc(product,state).length==0) ? <img src={addToCartImage} alt="" /> : <img src={addedToCartImage} alt="" />}
+          {/* si el producto esta en el carrito se añade una imagen y si no esta se añade la otra  */}
         </figure>
         
       </div>

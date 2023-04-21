@@ -5,11 +5,11 @@ import '../styles/OrderItem.scss';
 import close from '@icons/icon_close.png'
 
 const OrderItem = ({product}) => {//traemos el producto desde el map que crea estos componentes
-	const {removeFromCart,productCounter,sameProductsCalc,state}=useContext(AppContext)
+	const {productCounter,sameProductsCalc,state,removeGroupCart}=useContext(AppContext)
 	let inputAmount=1
 
-	const handleRemove=product=>{ //llama a la funcion removeFromCart de useInitialState.js para eliminar el producto
-		removeFromCart(product)
+	const handleRemove=product=>{ //llama a la funcion removeGroupCart de useInitialState.js para eliminar el producto
+		removeGroupCart(product)
 	}
 	const productCount = (event,product) => {//funcion ejecutada al escribir en el input
 		inputAmount=event.target.value //variable que almacena la cantidad de x producto

@@ -36,11 +36,21 @@ const initialState = {
 
     };
 
+    const removeGroupCart=(payload)=>{//remueve todos los productos del mismo tipo
+        const result=state.cart.filter((item)=>{ //filtra los productos de state.cart que NO tengan la misma ide que nuestro producto
+            return item.id !== payload.id
+        })
+        setState({ //carga en el estado los pordcutos
+            ...state,
+            cart:result, //sobreescribe la propiedad cart con la informacion nueva
+    })
+    }
+
     const removeFromCart = (payload) => { //remueve un producto del carrito
         const arraySamePayload=sameProductsCalc(payload,state)
         if (arraySamePayload.length > 1) {//si el payload se repite mas de una vez dara true
             const noRepeatedItem = state.cart.filter((item) => {
-               const  higerItemNumberSearched=(item.id === payload.id && item.repeatedTimes === arraySamePayload.length-1)? item:null   
+               const  higerItemNumberSearched=(item.id === payload.id && item.repeatedTimes === arraySamePayload.length-1)? item:null //selecciona el producto con el numero de repeticiones mayor  
                return item !==higerItemNumberSearched
             })
             setState({
@@ -78,6 +88,7 @@ const initialState = {
         removeFromCart,
         productCounter,
         sameProductsCalc,
+        removeGroupCart,
     }
 }
 
