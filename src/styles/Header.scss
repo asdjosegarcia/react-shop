@@ -4,10 +4,10 @@ nav {
 	position: sticky;
 	display: flex;
 	justify-content: space-between;
-	padding: 0 24px;
+	padding: 0 10px;
 /* 	margin-right: 23px; */
 	border-bottom: 1px solid var(--very-light-pink);
-	width: calc(100vw - 48px);
+	width: calc(100vw - 20px);
 	top: 0;
 	background-color: var(--white);
 }
@@ -48,13 +48,14 @@ nav {
 .navbar-email {
 	color: var(--very-light-pink);
 	font-size: var(--sm);
-	margin-right: 20px;
+	// margin-right: 10px;
 	cursor: pointer;
+	padding: 20px 10px;
 }
 .navbar-shopping-cart {
 	position: sticky;
 	cursor: pointer;
-
+	padding: 15px 10px;
 }
 .navbar-shopping-cart div {
 	width: 16px;
@@ -72,8 +73,10 @@ nav {
 }
 @media (max-width: 640px) {
 	.menu {
+		margin: 0;
 		display: block;
 		cursor: pointer;
+		padding: 15px;
 	}
 	.navbar-left ul {
 		display: none;
