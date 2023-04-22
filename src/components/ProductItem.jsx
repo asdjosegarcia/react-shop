@@ -32,7 +32,7 @@ const ProductItem = ({product}) => {//funcion del componente
         </div>
         <figure onClick={()=>handleClick(product)}>
           {/* llamamos a la funcion que cambia el estado  cart */}
-          {(sameProductsCalc(product,state).length==0) ? <img src={addToCartImage} alt="" /> : <img src={addedToCartImage} alt="" />}
+          {(sameProductsCalc(product,state).length==0) ? <img src={addToCartImage}className="addToCartImage" alt="" /> : <img src={addedToCartImage} className="addedToCartImage"alt="" />}
           {/* si el producto esta en el carrito se añade una imagen y si no esta se añade la otra  */}
         </figure>
         
