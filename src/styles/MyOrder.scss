@@ -71,7 +71,8 @@
 }
 @media (max-width: 640px) {
 	.MyOrder {
-		width: 100%;
+		width: 100vw;
+		height: 100vh;
 	}
 	.order-trasparent{
 		width: 80%;
