@@ -10,7 +10,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: 'bundle.js',
-        publicPath:'/' /* para evitar problemas con las rutas? */
+        publicPath:'./' /* para evitar problemas con las rutas? */
     },
     mode: 'development',
 
